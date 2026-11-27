@@ -1,0 +1,26 @@
+{
+  "$schema": "https://tauri.app",
+  "productName": "追番养肥看板Pro",
+  "version": "1.0.0",
+  "identifier": "com.animeshelf.pro",
+  "build": {
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "追番养肥看板 Pro",
+        "width": 1360,
+        "height": 860
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "nsis"
+  }
+}
