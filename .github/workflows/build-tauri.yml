@@ -12,10 +12,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Prepare frontend dist
+      - name: Prepare frontend and default icon
+        shell: pwsh
         run: |
-          mkdir dist
+          New-Item -ItemType Directory -Force -Path "dist" | Out-Null
           Copy-Item "追番养肥看板_优化版11.html" -Destination "dist/index.html"
+          New-Item -ItemType Directory -Force -Path "src-tauri/icons" | Out-Null
+          Add-Type -AssemblyName System.Drawing
+          $bmp = New-Object System.Drawing.Bitmap 32, 32
+          $g = [System.Drawing.Graphics]::FromImage($bmp)
+          $g.Clear([System.Drawing.Color]::FromArgb(79, 70, 229))
+          $icon = [System.Drawing.Icon]::FromHandle($bmp.GetHicon())
+          $fs = New-Object System.IO.FileStream("src-tauri/icons/icon.ico", [System.IO.FileMode]::Create)
+          $icon.Save($fs)
+          $fs.Close()
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
