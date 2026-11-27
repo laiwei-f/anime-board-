@@ -8,13 +8,7 @@
   },
   "app": {
     "withGlobalTauri": true,
-    "windows": [
-      {
-        "title": "追番养肥看板 Pro",
-        "width": 1360,
-        "height": 860
-      }
-    ],
+    "windows": [],
     "security": {
       "csp": null
     }
